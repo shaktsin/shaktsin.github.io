@@ -4,3 +4,5 @@
 
 layout: home
 ---
+
+Hi, I am Shakti. I use this space to compile what fascinates me, writing about Technology and AI on this wall.
