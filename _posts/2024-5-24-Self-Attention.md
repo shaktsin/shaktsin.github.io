@@ -3,8 +3,8 @@ layout: post
 title:  "Self-Attention"
 ---
 
-{% if post.content > post.excerpt.size %}
-<p><a href="{{ post.url }}">(more...)</a></p>
+{% if post.excerpt != post.content %}
+    <a href="{{ site.baseurl }}{{ post.url }}">Read more</a>
 {% endif %}
 
 
