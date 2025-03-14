@@ -23,3 +23,7 @@ https://pages.cs.wisc.edu/~remzi/Classes/537/Spring2018/Book/vm-tlbs.pdf
 - TLB Cache Replacement
   - LRU (may be)
   - Random Policy - Evict Random pages, simple and works well in edge cases
+  
+- How would you optimize memory space as per process TLB would take up a lot of memory space
+  - Assume a small problem with 16KB address space - 2^4 * 2 ^ 10 = 2^14 bytes and page size is of 1 KB
+    - So one page contains 2 ^ 10 bytes (offsets) and we have 16 such pages 
