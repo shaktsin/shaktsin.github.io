@@ -18,14 +18,26 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: </> Shaktsin
+title: Shaktsin
 description: >- # this means to ignore newlines until "baseurl:"
-  I use this space to compile what fascinates me, writing about Technology and AI on this wall.
+  Beneath abstractions lie truths only systems can tell.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  shaktsin
+twitter_username: jekyllrb
+github_username:  jekyll
 show_excerpts: true
 excerpt_separator: <!--more-->
+
+# Social links (GitHub is already supported)
+github_username: shaktsin
+
+# Custom LinkedIn link (Minima doesn't support it natively, but we can add it via the footer)
+linkedin_url: "https://www.linkedin.com/in/shaktsin"
+twitter_username: shaktsin
+
+
+# header_pages:
+#   # - about.md
 
 # Build settings
 theme: minima
@@ -51,3 +63,7 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+markdown: kramdown
+kramdown:
+  math_engine: katex
