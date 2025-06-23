@@ -3,9 +3,15 @@ layout: post
 title: "Deconstruction Series #1: Rebuilding GPT-2 in Pure C"
 date: 2025-06-19
 description: "We tear down GPT-2 and rebuild it in C — no Python, just bare metal, pain, and performance."
+math: true
 ---
 
-Welcome to the **GPT-2 Deconstruction Series**, where we unravel OpenAI’s GPT-2 architecture from scratch — **no Python, no PyTorch, no dependencies**. Just raw logic, low-level memory management, and the elegance of C.
+Welcome to the **GPT-2 Deconstruction Series** — a deep dive into how GPT-2 really works, built from the ground up in pure C. No Python. No PyTorch. No magic. Just raw logic, memory management, and the beauty (and pain) of doing everything yourself.
+
+Whether you're here to learn how transformers tick, or just enjoy bending C to your will, this is your guide to building GPT-2 step by step — from tokenization to text generation.
+
+**Check Out the GPT-2 C Implementation**: [gpt2.c](https://github.com/shaktsin/gpt2.c)
+
 <!--more-->
 
 
@@ -58,7 +64,7 @@ GPT-2 uses **12 blocks** (for GPT-2 Small). Each block contains two main sub-lay
 These layers are repeated again and again to refine the understanding of context.
 
 
-## Self-Attention (`q`, `k`, `v`, `c_proj`)
+### Self-Attention (`q`, `k`, `v`, `c_proj`)
 
 > **"Look at other words before making a decision."**
 
@@ -73,62 +79,131 @@ Each is created by multiplying the input with a set of weights:
 - Shapes:  
   - `q_weight`, `k_weight`, `v_weight`: **(hidden_size, hidden_size)**
 
-### 🔣 Full Attention Formula (Mathematical Form)
+#### Full Attention Formula (Mathematical Form)
 
-Given input matrix \( X \in \mathbb{R}^{T \times d_{model}} \), where \( T \) is the sequence length and \( d_{model} \) is the hidden size:
+Inline math example: $$ Q = XW^Q, \quad K = XW^K, \quad V = XW^V $$
 
-1. **Linear Projections:**
 
-\[
-Q = XW^Q,\quad K = XW^K,\quad V = XW^V
-\]
+Block math:
+
+$$
+W^Q, W^K, W^V \in \mathbb{R}^{d_{\text{model}} \times d_{\text{head}}}
+$$
+
+$$
+d_{\text{head}} = \frac{d_{\text{model}}}{n_{\text{heads}}}
+$$
+
+
+Each GPT-2 attention block computes queries, keys, and values using linear projections from the input hidden state. These are then used for scaled dot-product attention.
+
+Assuming:
+
+- `n_embd = 768` (hidden size)
+- `n_head = 12` (number of attention heads)
+- `head_dim = n_embd / n_head = 64`
+
+Each token is transformed via three learned matrices: **Q**, **K**, and **V**.
+
+| Projection | Weight Shape     | Bias Shape     | Description                             |
+|------------|------------------|----------------|-----------------------------------------|
+| Q (query)  | (768, 768)       | (768,)         | Projects input to queries               |
+| K (key)    | (768, 768)       | (768,)         | Projects input to keys                  |
+| V (value)  | (768, 768)       | (768,)         | Projects input to values                |
+| c_proj     | (768, 768)       | (768,)         | Projects concatenated heads back to hidden |
+
+
+### MLP (Feedforward Network)
+
+The MLP (Multi-Layer Perceptron) is the second major sub-layer in each GPT-2 transformer block. It operates independently on each token position after attention and helps the model learn deeper, nonlinear transformations.
+
+
+The GPT-2 MLP is a simple two-layer fully connected network with a GELU activation in between:
+
+Let:
+
+- `n_embd` = hidden size (e.g., 768 for GPT-2 small)
+- `n_inner` = intermediate size (typically 4 × `n_embd` = 3072)
+
+Then the two layers have the following shapes:
+
+| Layer     | Weight Shape      | Bias Shape     |
+|-----------|-------------------|----------------|
+| Linear₁   | (3072, 768)       | (3072,)        |
+| Linear₂   | (768, 3072)       | (768,)         |
+
+> Note: PyTorch stores weights as (out_features, in_features)
+
+### Operations
+
+1. **First linear layer (`c_fc`)** expands the hidden dimension:  
+   `h1 = x · W₁ᵗ + b₁`
+2. **GELU activation** adds non-linearity:  
+   `h2 = GELU(h1)`
+3. **Second linear layer (`c_proj`)** projects back to hidden size:  
+   `y = h2 · W₂ᵗ + b₂`
+
+Each operation is applied **independently per token** in the sequence.
+
+---
+## Final Output: Vocabulary Projection and Sampling
+
+After passing through all transformer layers, the final hidden state is projected back to the vocabulary space to generate the next token.
+
+### Vocabulary Projection
+
+The final layer is a **linear projection using the same weights as the token embedding**:
+
+$$
+\text{logits} = \text{hidden_state} \cdot W^\top
+$$
+
 
 Where:
 
-- \( W^Q, W^K, W^V \in \mathbb{R}^{d_{model} \times d_{head}} \)
-- Typically, \( d_{head} = \frac{d_{model}}{n_{heads}} \)
+- `hidden_state` has shape `(seq_len, hidden_size)`
+- `W` is the token embedding matrix of shape `(vocab_size, hidden_size)`
+- Result: `logits` shape is `(seq_len, vocab_size)`
+
+Only the last token's logits are used for next-token prediction.
+
+### Temperature Scaling
+
+To control randomness, the logits are divided by a **temperature** value:
+
+
+- `temperature = 1.0` → normal (unchanged) distribution
+- `< 1.0` → sharper, more confident choices (less randomness)
+- `> 1.0` → flatter distribution (more diversity)
+
+### 🎲 Sampling
+
+After temperature scaling, sampling determines which token to choose:
+
+#### Greedy Sampling
+- Select the token with the highest probability
+- Deterministic, less creative
+
+#### Top-k Sampling
+- Keep only the `k` highest-probability tokens
+- Sample randomly among them
+
+#### Top-p (Nucleus) Sampling
+- Keep the smallest set of tokens whose cumulative probability ≥ `p`
+- Sample from this dynamic shortlist
+
+In C, you can implement sampling by:
+1. Applying softmax to logits
+2. Normalizing probabilities
+3. Picking based on random draw weighted by probabilities
 
 ---
 
-2. **Scaled Dot-Product Attention:**
+### Example
 
-\[
-\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^\top}{\sqrt{d_{head}}} + M \right)V
-\]
-
-Where:
-
-- \( M \) is the **causal mask** that prevents attending to future tokens (values are \(-\infty\) above the diagonal)
-
----
-
-3. **Concatenate Heads:**
-
-\[
-\text{MultiHead}(X) = \text{Concat}(\text{head}_1, \dots, \text{head}_h)W^O
-\]
-
-Where:
-
-- \( W^O \in \mathbb{R}^{d_{model} \times d_{model}} \)
-- Each head is processed in parallel and then concatenated
-
----
-
-4. **Final Projection:**
-
-\[
-\text{Output} = \text{MultiHead}(X)
-\]
-
-The final attention output is projected back using:
-
-\[
-\text{Output} \in \mathbb{R}^{T \times d_{model}} \quad \text{via} \quad c_{proj} \in \mathbb{R}^{d_{model} \times d_{model}}
-\]
-
-> These scores tell GPT-2 how much attention each word should pay to every previous word.
->
-> The final attention output is projected back using `c_proj`.
->
-> **Shape**: \( (d_{model}, d_{model}) \)
+```c
+// Pseudocode
+logits = matmul(last_hidden, embedding_T);
+scaled_logits = logits / temperature;
+next_token = sample_softmax_top_k(scaled_logits, k=40);
+```
