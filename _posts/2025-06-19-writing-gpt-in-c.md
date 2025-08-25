@@ -4,6 +4,7 @@ title: "Deconstruction Series #1: Rebuilding GPT-2 in Pure C"
 date: 2025-06-19
 description: "We tear down GPT-2 and rebuild it in C — no Python, just bare metal, pain, and performance."
 math: true
+author: Shakti Pratap Singh
 ---
 
 Welcome to the **GPT-2 Deconstruction Series** — a deep dive into how GPT-2 really works, built from the ground up in pure C. No Python. No PyTorch. No magic. Just raw logic, memory management, and the beauty (and pain) of doing everything yourself.
