@@ -32,4 +32,11 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 gem 'kramdown-math-katex'
+# Needed on Ruby 3.4+ because csv is no longer bundled
+gem "csv"
+
+# Optional but recommended: silences the deprecation warning now
+# and future-proofs for Ruby 3.5+ where logger won’t be bundled
+gem "logger"
+gem 'jekyll-sitemap'
 
