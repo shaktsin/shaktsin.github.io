@@ -2,33 +2,238 @@
 layout: default
 ---
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+<div class="profile-shell">
+  <nav class="profile-tabs" aria-label="Profile sections">
+    <button class="profile-tab is-active" type="button" data-tab-target="profile">Profile</button>
+    <button class="profile-tab" type="button" data-tab-target="research-articles">Research Articles</button>
+    <button class="profile-tab" type="button" data-tab-target="blog-posts">Blog Posts</button>
+    <button class="profile-tab" type="button" data-tab-target="talks">Talks</button>
+    <button class="profile-tab" type="button" data-tab-target="patents">Patents</button>
+  </nav>
 
-  {{ content }}
+  <div class="profile-grid">
+    <aside class="profile-rail" aria-label="Profile summary">
+      <img
+        class="profile-photo"
+        src="https://media.licdn.com/dms/image/v2/C4E03AQF39fj5MEmNww/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1609086684273?e=2147483647&amp;v=beta&amp;t=ctz0xcrC10qxUXLQhPwDMN1N1tfk--kmIBnhYgmbbyE"
+        alt="Shakti P. Singh"
+      >
+      <h1>Shakti P. Singh</h1>
+      <p class="profile-role">Engineer building scalable distributed systems for ML/AI.</p>
 
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-            <p>{{ post.excerpt | strip_html }} <a href="{{ post.url | relative_url }}">Read more</a></p>
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
+      <dl class="profile-facts">
+        <div>
+          <dt>Current</dt>
+          <dd>Oracle</dd>
+        </div>
+        <div>
+          <dt>Education</dt>
+          <dd>Carnegie Mellon University; Indian Institute of Technology (BHU)</dd>
+        </div>
+        <div>
+          <dt>Location</dt>
+          <dd>United States</dd>
+        </div>
+        <div>
+          <dt>Languages</dt>
+          <dd>English, Hindi</dd>
+        </div>
+      </dl>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
+      <div class="profile-links" aria-label="External links">
+        <a href="https://www.linkedin.com/in/shaktsin/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=DcKEexAAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://www.forbes.com/councils/forbestechcouncil/2026/01/22/the-new-frontier-of-llm-inference-where-the-next-tenfold-gains-will-come-from/" target="_blank" rel="noopener">Forbes Article</a>
+        <a href="https://doi.org/10.5281/zenodo.20682521" target="_blank" rel="noopener">Research DOI</a>
+        <a href="https://www.forbes.com/councils/forbestechcouncil/people/shaktisingh/" target="_blank" rel="noopener">Forbes</a>
+        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>
+        <a href="{{ "/feed.xml" | relative_url }}">RSS</a>
+      </div>
+    </aside>
 
+    <section class="profile-content">
+      <div id="profile" class="profile-panel is-active" data-tab-panel>
+        <p class="eyebrow">Machine Learning Platform, Distributed Systems, and AI Infrastructure</p>
+        <h2>About</h2>
+        <p>
+          I like building the parts of AI systems that most people only notice when they fail: the
+          infrastructure, deployment paths, inference layers, and platform pieces that keep models
+          usable in production. My work sits across distributed systems, machine learning platforms,
+          AI platforms, agentic platforms, and the practical details that make these systems reliable.
+        </p>
+        <p>
+          I currently work at Oracle and studied at Carnegie Mellon University and Indian Institute of
+          Technology (BHU). This site is where I keep the writing, research artifacts, experiments,
+          talks, and patent work that connect back to the same thread: making ML/AI systems scale
+          without losing sight of how they actually run.
+        </p>
+
+        <div class="focus-grid">
+          <div>
+            <h3>Core Areas</h3>
+            <ul>
+              <li>Distributed systems for ML/AI workloads</li>
+              <li>Machine learning platforms</li>
+              <li>Machine learning</li>
+              <li>AI and agentic platforms</li>
+              <li>LLM inference and serving infrastructure</li>
+              <li>Cloud reliability, scale, and performance</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Public Footprint</h3>
+            <ul>
+              <li>Forbes Technology Council contributor</li>
+              <li>Research article archived with DOI on Zenodo</li>
+              <li>LinkedIn profile with 500+ connections</li>
+              <li>Blog posts across GPT-2 internals, Forbes, and Oracle AI</li>
+              <li>Patent filing on optimized model deployment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="research-articles" class="profile-panel" data-tab-panel>
+        <p class="eyebrow">Research</p>
+        <h2>Research Articles</h2>
+        <ul class="profile-list">
+          <li>
+            <span class="item-meta">Preprint | Published Jun 13, 2026 | DOI: 10.5281/zenodo.20682521</span>
+            <h3>
+              <a href="https://doi.org/10.5281/zenodo.20682521" target="_blank" rel="noopener">
+                FailFast-Fargate: Predictive Container Restart Policies for SLO-Driven ECS/Fargate Services
+              </a>
+            </h3>
+            <p>
+              FailFast-Fargate studies a proactive task replacement framework for Amazon ECS/Fargate
+              services. The goal is to detect degradation before user-visible SLO violations occur,
+              instead of waiting for hard failures or health-check breaches after error budgets have
+              already been consumed.
+            </p>
+            <p>
+              The approach estimates short-horizon SLO risk from task telemetry and trace signals, then
+              compares the likely cost of leaving a degrading task in service against the cost of
+              replacing it. It is designed to work through standard ECS mechanisms without requiring
+              changes to the underlying AWS ECS architecture.
+            </p>
+            <p>
+              Synthetic degradation experiments show reductions in error-budget burn and SLO impact
+              while keeping restart rates controlled. The work frames predictive restart policies as a
+              practical path toward self-healing, SLO-aware services on ECS/Fargate.
+            </p>
+            <p>
+              <strong>Keywords:</strong> ECS, Fargate, SLO, cloud computing, distributed systems,
+              predictive restart, self-healing.
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div id="blog-posts" class="profile-panel" data-tab-panel>
+        <p class="eyebrow">Writing</p>
+        <h2>Blog Posts</h2>
+        {{ content }}
+
+        <ul class="profile-list">
+          {%- for post in site.posts -%}
+            <li>
+              {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+              <span class="item-meta">{{ post.date | date: date_format }} | Personal blog</span>
+              <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+              {%- if site.show_excerpts -%}
+                <p>{{ post.excerpt | strip_html }} <a href="{{ post.url | relative_url }}">Read more</a></p>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+          <li>
+            <span class="item-meta">Jan 22, 2026 | Forbes Technology Council</span>
+            <h3>
+              <a href="https://www.forbes.com/councils/forbestechcouncil/2026/01/22/the-new-frontier-of-llm-inference-where-the-next-tenfold-gains-will-come-from/" target="_blank" rel="noopener">
+                The New Frontier Of LLM Inference: Where The Next Tenfold Gains Will Come From
+              </a>
+            </h3>
+            <p>
+              A Forbes Technology Council article on how brute-force scaling is giving way to inference
+              engine improvements rooted in core computer systems design.
+            </p>
+          </li>
+          <li>
+            <span class="item-meta">Oracle AI and Data Science Blog</span>
+            <h3>
+              <a href="https://blogs.oracle.com/ai-and-datascience/deploy-llm-oci-data-science-nvidia-triton" target="_blank" rel="noopener">
+                Deploy an LLM on OCI Data Science with NVIDIA Triton
+              </a>
+            </h3>
+            <p>
+              Oracle blog post on deploying a large language model using OCI Data Science and NVIDIA Triton.
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div id="talks" class="profile-panel" data-tab-panel>
+        <p class="eyebrow">Talks and judging</p>
+        <h2>Talks</h2>
+        <ul class="profile-list">
+          <li>
+            <span class="item-meta">May 1, 2026 | UCLA LA Hacks</span>
+            <h3>
+              <a href="https://www.linkedin.com/posts/shaktsin_had-a-great-time-judging-at-uclas-flagship-activity-7455989162283032576-sw6o" target="_blank" rel="noopener">
+                UCLA LA Hacks at Pauley Pavilion
+              </a>
+            </h3>
+            <p>
+              Judged UCLA's flagship hackathon, reviewed demos from 1,000+ participants, and highlighted
+              the Codebreaker winning team.
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div id="patents" class="profile-panel" data-tab-panel>
+        <p class="eyebrow">Filed intellectual property</p>
+        <h2>Patents</h2>
+        <ul class="profile-list">
+          <li>
+            <span class="item-meta">Application No. 19/088,846 | Filed Mar 18, 2025</span>
+            <h3>Model Deployment System for Generating Optimized Models for a Target Environment</h3>
+            <p>
+              Patent application covering a model deployment system for generating optimized models for
+              a target environment. Listed with other inventors.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
 </div>
+
+<script>
+  (function () {
+    var tabs = document.querySelectorAll(".profile-tab");
+    var panels = document.querySelectorAll("[data-tab-panel]");
+
+    function showPanel(id) {
+      tabs.forEach(function (tab) {
+        tab.classList.toggle("is-active", tab.dataset.tabTarget === id);
+      });
+      panels.forEach(function (panel) {
+        panel.classList.toggle("is-active", panel.id === id);
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        showPanel(tab.dataset.tabTarget);
+        if (history.replaceState) {
+          history.replaceState(null, "", "#" + tab.dataset.tabTarget);
+        }
+      });
+    });
+
+    var initial = window.location.hash.replace("#", "");
+    if (initial && document.getElementById(initial)) {
+      showPanel(initial);
+    }
+  })();
+</script>

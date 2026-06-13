@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  <meta name="google-site-verification" content="HyhtpXcrjKZeHpufqjsL460CedhMig1ACr-c7cPtCOI" />
-
-
   {%- include head.html -%}
 
   <body>
 
-    {%- include header.html -%}
+    {%- unless page.hide_header -%}
+      {%- include header.html -%}
+    {%- endunless -%}
 
     <main class="page-content" aria-label="Content">
-      <div class="wrapper">
+      <div class="wrapper{% if page.wide_layout %} wrapper-wide{% endif %}">
         {{ content }}
       </div>
     </main>

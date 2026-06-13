@@ -1,0 +1,260 @@
+.wrapper-wide {
+  max-width: 1180px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.profile-shell {
+  color: #1f2933;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 1160px;
+  padding: 0 0 54px;
+}
+
+.profile-shell a {
+  color: #0f5f8c;
+  text-decoration: none;
+}
+
+.profile-shell a:hover {
+  text-decoration: underline;
+}
+
+.profile-tabs {
+  align-items: center;
+  border-bottom: 1px solid #d9e1e8;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 34px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.profile-tab {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: #52616f;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 16px;
+  padding: 10px 12px;
+}
+
+.profile-tab.is-active {
+  border-bottom-color: #0f5f8c;
+  color: #111827;
+  font-weight: 700;
+}
+
+.profile-grid {
+  display: grid;
+  gap: 36px;
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+
+.profile-rail {
+  border-right: 1px solid #d9e1e8;
+  padding-right: 30px;
+  text-align: center;
+}
+
+.profile-photo {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 12px 32px rgba(31, 41, 51, 0.16);
+  display: block;
+  margin: 0 auto 18px;
+  object-fit: cover;
+  width: 152px;
+}
+
+.profile-rail h1 {
+  color: #111827;
+  font-size: 28px;
+  line-height: 1.15;
+  margin: 0 0 8px;
+}
+
+.profile-role {
+  color: #52616f;
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0 auto 22px;
+  max-width: 230px;
+}
+
+.profile-facts {
+  border-top: 1px solid #edf1f5;
+  margin: 0 0 22px;
+  padding-top: 16px;
+  text-align: left;
+}
+
+.profile-facts div {
+  margin-bottom: 14px;
+}
+
+.profile-facts dt {
+  color: #7b8794;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.profile-facts dd {
+  color: #273444;
+  font-size: 15px;
+  margin: 3px 0 0;
+}
+
+.profile-links {
+  display: grid;
+  gap: 8px;
+}
+
+.profile-links a {
+  border: 1px solid #d9e1e8;
+  border-radius: 6px;
+  color: #273444;
+  display: block;
+  padding: 9px 10px;
+}
+
+.profile-links a:hover {
+  background: #f6f8fa;
+  text-decoration: none;
+}
+
+.profile-content {
+  min-width: 0;
+}
+
+.profile-panel {
+  display: none;
+}
+
+.profile-panel.is-active {
+  display: block;
+}
+
+.eyebrow {
+  color: #0f5f8c;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.profile-panel h2 {
+  color: #111827;
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 0 0 18px;
+}
+
+.profile-panel h3 {
+  color: #111827;
+  font-size: 20px;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+
+.profile-panel p,
+.profile-panel li {
+  color: #3e4c59;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.profile-panel p {
+  margin: 0 0 16px;
+}
+
+.focus-grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.focus-grid > div {
+  border-top: 3px solid #89a7b5;
+  padding-top: 14px;
+}
+
+.focus-grid ul,
+.profile-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.focus-grid li {
+  margin-bottom: 8px;
+  padding-left: 18px;
+  position: relative;
+}
+
+.focus-grid li::before {
+  background: #89a7b5;
+  border-radius: 50%;
+  content: "";
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 12px;
+  width: 6px;
+}
+
+.profile-list li {
+  border-bottom: 1px solid #edf1f5;
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+}
+
+.profile-list li:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.item-meta {
+  color: #7b8794;
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 760px) {
+  .wrapper-wide {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .profile-shell {
+    padding-top: 6px;
+  }
+
+  .profile-tabs {
+    justify-content: flex-start;
+    margin-bottom: 26px;
+  }
+
+  .profile-grid,
+  .focus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-rail {
+    border-bottom: 1px solid #d9e1e8;
+    border-right: 0;
+    padding-bottom: 26px;
+    padding-right: 0;
+  }
+}
