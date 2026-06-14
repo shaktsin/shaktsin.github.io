@@ -34,20 +34,22 @@ layout: default
           <dt>Location</dt>
           <dd>United States</dd>
         </div>
-        <div>
-          <dt>Languages</dt>
-          <dd>English, Hindi</dd>
-        </div>
       </dl>
 
       <div class="profile-links" aria-label="External links">
-        <a href="https://www.linkedin.com/in/shaktsin/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://scholar.google.com/citations?user=DcKEexAAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://www.forbes.com/councils/forbestechcouncil/2026/01/22/the-new-frontier-of-llm-inference-where-the-next-tenfold-gains-will-come-from/" target="_blank" rel="noopener">Forbes Article</a>
-        <a href="https://doi.org/10.5281/zenodo.20682521" target="_blank" rel="noopener">Research DOI</a>
-        <a href="https://www.forbes.com/councils/forbestechcouncil/people/shaktisingh/" target="_blank" rel="noopener">Forbes</a>
-        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>
-        <a href="{{ "/feed.xml" | relative_url }}">RSS</a>
+        <a href="https://www.linkedin.com/in/shaktsin/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.49h4V24h-4V8.49zm7.5 0h3.8v2.11h.05c.53-.99 1.83-2.11 3.77-2.11 4.03 0 4.78 2.65 4.78 6.09V24h-4v-7.98c0-1.9-.03-4.36-2.66-4.36-2.66 0-3.07 2.08-3.07 4.22V24h-4V8.49z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.12 0 0 .67-.21 2.2.82a7.68 7.68 0 012-.27c.68.003 1.36.092 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+        <a href="https://scholar.google.com/citations?user=DcKEexAAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">
+          <span aria-hidden="true">G</span>
+        </a>
       </div>
     </aside>
 
@@ -130,7 +132,6 @@ layout: default
       </div>
 
       <div id="blog-posts" class="profile-panel" data-tab-panel>
-        <p class="eyebrow">Writing</p>
         <h2>Blog Posts</h2>
         {{ content }}
 
@@ -191,7 +192,6 @@ layout: default
       </div>
 
       <div id="patents" class="profile-panel" data-tab-panel>
-        <p class="eyebrow">Filed intellectual property</p>
         <h2>Patents</h2>
         <ul class="profile-list">
           <li>
