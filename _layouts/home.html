@@ -5,6 +5,7 @@ layout: default
 <div class="profile-shell">
   <nav class="profile-tabs" aria-label="Profile sections">
     <button class="profile-tab is-active" type="button" data-tab-target="profile">Profile</button>
+    <button class="profile-tab" type="button" data-tab-target="projects">Projects</button>
     <button class="profile-tab" type="button" data-tab-target="research-articles">Research Articles</button>
     <button class="profile-tab" type="button" data-tab-target="blog-posts">Blog Posts</button>
     <button class="profile-tab" type="button" data-tab-target="talks">Talks</button>
@@ -93,6 +94,34 @@ layout: default
             </ul>
           </div>
         </div>
+      </div>
+
+      <div id="projects" class="profile-panel" data-tab-panel>
+        <p class="eyebrow">Open source</p>
+        <h2>Projects</h2>
+        <ul class="profile-list">
+          <li>
+            <span class="item-meta">Open source | macOS</span>
+            <h3>
+              <a href="https://umcode.dev/" target="_blank" rel="noopener">UMCODE</a>
+            </h3>
+            <p>
+              I built UMCODE, a local-first AI workbench for Mac that keeps chats and instructions
+              with the project they belong to. It supports configurable model providers, ordered
+              model pools with automatic fallback, and local models.
+            </p>
+            <p>
+              UMCODE stores provider keys in the macOS Keychain, makes tool actions visible, and
+              asks for approval before sensitive operations. Its plugin system supports agent skills,
+              MCP servers, and hooks that users can inspect before installation.
+            </p>
+            <p>
+              <a href="https://umcode.dev/" target="_blank" rel="noopener">Visit UMCODE</a>
+              &nbsp;|&nbsp;
+              <a href="https://github.com/shaktsin/umcode" target="_blank" rel="noopener">View source on GitHub</a>
+            </p>
+          </li>
+        </ul>
       </div>
 
       <div id="research-articles" class="profile-panel" data-tab-panel>
