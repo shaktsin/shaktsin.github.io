@@ -1,0 +1,53 @@
+---
+layout: null
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FailFast-Fargate: Predictive Container Restart Policies for SLO-Driven ECS/Fargate Services | Shakti Pratap Singh</title>
+  <meta name="description" content="Preprint by Shakti Pratap Singh on predictive container restart policies for SLO-driven ECS/Fargate services.">
+  <link rel="canonical" href="https://shaktsin.github.io/research/failfast-fargate/">
+  <meta name="citation_title" content="FailFast-Fargate: Predictive Container Restart Policies for SLO-Driven ECS/Fargate Services">
+  <meta name="citation_author" content="Shakti Pratap Singh">
+  <meta name="citation_publication_date" content="2026/06/13">
+  <meta name="citation_doi" content="10.5281/zenodo.20682521">
+  <meta name="citation_pdf_url" content="https://shaktsin.github.io/research/failfast-fargate/failfast-fargate.pdf">
+  <style>
+    :root { color-scheme: light dark; }
+    body { max-width: 52rem; margin: 0 auto; padding: 1.25rem; font: 1rem/1.55 system-ui, sans-serif; }
+    h1 { font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2; margin: 1rem 0 .6rem; }
+    h2 { font-size: 1.2rem; margin: 1.2rem 0 .4rem; }
+    p { margin: .6rem 0; }
+    a { color: #1762a8; text-underline-offset: .15em; overflow-wrap: anywhere; }
+    .author { font-size: 1.1rem; }
+    .meta, footer { font-size: .9rem; }
+    footer { margin-top: 1.5rem; border-top: 1px solid #888; padding-top: .75rem; }
+    @media (prefers-color-scheme: dark) { a { color: #8dc6ff; } }
+  </style>
+</head>
+<body>
+  <nav aria-label="Breadcrumb"><a href="/">Shakti P. Singh</a> / Research</nav>
+  <main>
+    <article>
+      <h1>FailFast-Fargate: Predictive Container Restart Policies for SLO-Driven ECS/Fargate Services</h1>
+      <p class="author">Shakti Pratap Singh</p>
+      <p class="meta">Independent Researcher · Preprint · Version v1 · Published <time datetime="2026-06-13">June 13, 2026</time></p>
+      <p><a href="failfast-fargate.pdf" type="application/pdf">Read the full paper (PDF, 214 kB)</a> · <a href="https://doi.org/10.5281/zenodo.20682521">Zenodo / DOI</a></p>
+      <section aria-labelledby="abstract">
+        <h2 id="abstract">Abstract</h2>
+        <p>Tasks in ECS/Fargate do not undergo replacements until they have either failed or failed health checks. Nonetheless, many cases of production issues can be attributed to task degradations, which include memory growth, retry storms, and timeouts in upstreams. Degradations take long periods before affecting tasks’ health or the SLO error budgets. In this paper, we introduce FailFast-Fargate, a proactive task-replacement approach for SLO-based ECS/Fargate applications. FailFast-Fargate evaluates the risk of SLO violations by each task through task telemetry and trace data within a short horizon. FailFast-Fargate then makes decisions on task replacements based on the cost-benefit ratio where the estimated cost of leaving a failing task is compared against its estimated cost of replacing it, and the task with higher cost is replaced. Since FailFast-Fargate does not involve any modifications of the AWS ECS architecture, it makes use of standard ECS mechanisms while respecting capacity and rollout constraints. Our experiments involving injection of synthetic task degradations reveal that FailFast-Fargate mitigates SLO violations by decreasing error-budget burn time and duration while maintaining a steady stream of task restarts and preventing restart storms.</p>
+      </section>
+      <p class="meta"><strong>Keywords:</strong> ECS, Fargate, SLO, error budget, predictive restart, survival analysis, self-healing</p>
+      <section aria-labelledby="cite">
+        <h2 id="cite">Cite this paper</h2>
+        <p>Singh, S. P. (2026). <cite>FailFast-Fargate: Predictive Container Restart Policies for SLO-Driven ECS/Fargate Services</cite>. Zenodo. <a href="https://doi.org/10.5281/zenodo.20682521">https://doi.org/10.5281/zenodo.20682521</a></p>
+      </section>
+    </article>
+  </main>
+  <footer>
+    <p>© 2026 Shakti Pratap Singh. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International</a>. The PDF is an unchanged copy of <a href="https://zenodo.org/records/20682521">Zenodo record 20682521</a>.</p>
+  </footer>
+</body>
+</html>
